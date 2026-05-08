@@ -1,0 +1,30 @@
+name: Deploy to Server Using GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Show Runner Information
+        run: |
+          echo "Runner OS:"
+          uname -a
+
+      - name: Check Python Version
+        run: python3 --version
+
+      - name: Run Application
+        run: python3 app.py
+
+      - name: Deployment Message
+        run: echo "Deployment step completed successfully."
